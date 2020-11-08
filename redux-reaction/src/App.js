@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
 import WatchList from './WatchList.js';
+import { TextField, Button } from '@material-ui/core';
 
 class App extends React.Component {
 
@@ -43,17 +43,27 @@ class App extends React.Component {
     return (
       <div>
 
-      <div className="watchlist__container">
+    <nav>
+      <div class="nav-wrapper teal lighten-2" >
+        <a href="#" class="brand-logo">Redux-Reaction</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Account</a></li>
+        </ul>
+      </div>
+    </nav>
+
+      <div className="watchList__container">
      <WatchList titles={this.state.titles}/>
 
-     <form onSubmit={(e) => this.addWatchTitle(e)}>
-       <input placeholder="title"
-       name="newTitleName"
-       value={this.state.newTitleName}
-       onChange={this.handleAddTitleChange}>
-       </input>
+     <form onSubmit={(e) => this.addWatchTitle(e)} className="center">
+     <TextField id="standard-basic" label="Watch Title"
+     name="newTitleName"
+     value={this.state.newTitleName}
+     onChange={this.handleAddTitleChange}
+     />
 
-       <button action="submit">Add</button>
+      <Button color="primary" variant="outlined" onClick={(e) => this.addWatchTitle(e)}>Add</Button>
      </form>
 
      </div>

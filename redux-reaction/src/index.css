@@ -1,3 +1,10 @@
 body {
   margin: 0;
+  font-size: 12px;
+}
+
+.watchList__container {
+  width: 70%;
+  margin: 100px auto 0 auto;
+  font-size: 20px;
 }

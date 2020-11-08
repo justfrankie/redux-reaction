@@ -13,7 +13,7 @@ const WatchList = ({titles}) => {
 
     // returns/renders the list item
     return (
-        <div>
+        <div className="center card-panel blue-text ">
             {watchList}
         </div>
     )
