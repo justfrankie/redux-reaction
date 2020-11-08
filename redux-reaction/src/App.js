@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Button } from '@material-ui/core';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+    return (
+      <div>
+
+      <nav>
+        <ul>
+          <li>nav1</li>
+          <li>nav2</li>
+          <li>nav3</li>
+        </ul>
+      </nav>
+
+      <div>
+        <h1>body</h1>
+      </div>
+
+      <footer>footer</footer>
+
+      </div>
+    );
+  }
 }
 
 export default App;
