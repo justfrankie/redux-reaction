@@ -1,25 +1,34 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
+import WatchList from './WatchList.js';
 
 class App extends React.Component {
+
+  constructor(){
+    super();
+    this.state = {
+      newTitleName: '',
+      titles: [
+        {id: 1, title: 'matrix'},
+        {id: 2, title: 'inception'},
+      ]
+    }
+  }
 
   render() {
     return (
       <div>
 
-      <nav>
-        <ul>
-          <li>nav1</li>
-          <li>nav2</li>
-          <li>nav3</li>
-        </ul>
-      </nav>
+      <div class="watchlist__container">
+     <WatchList titles={this.state.titles}/>
 
-      <div>
-        <h1>body</h1>
-      </div>
+     <form>
+       <input placeholder="title" name="newTitleName"></input>
 
-      <footer>footer</footer>
+       <button action="submit">Add</button>
+     </form>
+
+     </div>
 
       </div>
     );
