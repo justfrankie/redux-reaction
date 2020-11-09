@@ -1,6 +1,8 @@
 import { Button } from "@material-ui/core";
 import { connect } from "react-redux";
 import { Component } from "react";
+import { deleteTitle } from './actions/watchListActions.js';
+import { changeWatchedProperty } from './actions/watchListActions.js'
 
 class WatchList extends Component {
 
@@ -42,7 +44,6 @@ class WatchList extends Component {
       <p>You have no watch titles!</p>
     );
 
-    // returns/renders the list item
     return <div className="center card-panel blue-text ">{mappedList}</div>;
   }
 }
@@ -56,10 +57,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleDelete: (index) => {
-      dispatch({ type: "DELETE_TITLE", index: index });
+      dispatch(deleteTitle(index));
     },
     changeToWatched: (index) => {
-        dispatch({ type: "CHANGE_TO_WATCHED", index: index });
+        dispatch(changeWatchedProperty(index));
     }
   };
 };

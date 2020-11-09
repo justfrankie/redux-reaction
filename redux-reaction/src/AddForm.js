@@ -1,23 +1,34 @@
 import { TextField, Button } from '@material-ui/core';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { dispatchAddNewTitle } from './actions/addNewTitleActions.js';
 
 class AddForm extends Component {
+  handleAddingTitle = (e) => {
+    e.preventDefault();
+    this.props.addWatchTitle(this.props.newTitleName)
+  }
+
+  handleInputChange = (e) => {
+    e.preventDefault();
+    this.props.handleAddTitleChange(e)
+  }
+
   render (){
     return (
-    <form onSubmit={(e) => this.props.addWatchTitle(e)} className="submitForm center">
+    <form onSubmit={e => this.handleAddingTitle(e)} className="submitForm center">
       <TextField
         id="standard-basic"
         label="Watch Title"
         name="newTitleName"
         value={this.props.newTitleName}
-        onChange={this.props.handleAddTitleChange}
+        onChange={(e) => this.handleInputChange(e)}
       />
 
       <Button
         color="primary"
         variant="outlined"
-        onClick={(e) => this.props.addWatchTitle(e)}
+        onClick={(e) => this.handleAddingTitle(e)}
       >
         Add
       </Button>
@@ -27,15 +38,15 @@ class AddForm extends Component {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        newTitleName: state.newTitleName
-    }
+  return {
+      newTitleName: state.newTitleName
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addWatchTitle: () => { dispatch({type: 'ADD_TITLE'})},
-        handleAddTitleChange: () => { dispatch({type: 'HANDLE_CHANGE'})}
+        addWatchTitle: (newTitleName) => { dispatch(dispatchAddNewTitle(newTitleName))},
+        handleAddTitleChange: (e) => { dispatch({type: 'HANDLE_CHANGE', newInput: e.target.value})}
     }
 }
 

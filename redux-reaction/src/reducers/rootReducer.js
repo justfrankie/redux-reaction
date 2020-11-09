@@ -1,35 +1,43 @@
 const initState = {
-  newTitleName: '',
-  titles: [
-    { id: 1, title: "The Matrix", watched: false },
-    { id: 2, title: "Inception", watched: false },
-    { id: 4, title: "A Quiet Place", watched: false },
-  ],
+  newTitleName: "",
+  titles: localStorage.getItem("titles")
+    ? JSON.parse(localStorage.getItem("titles"))
+    : [],
 };
 
 const rootReducer = (state = initState, action) => {
-  if (action.type === 'CHANGE_TO_WATCHED') {
-    // let newState = Object.assign({}, state, { modalOpen: true})
-    // newState.titles[action.index].watched = !newState.titles[action.index].watched
-    
-    let newTitles = new Array(...state.titles)
-    newTitles[action.index].watched = !newTitles[action.index].watched
+  if (action.type === "CHANGE_TO_WATCHED") {
+    let newTitles = new Array(...state.titles);
+    newTitles[action.index].watched = !newTitles[action.index].watched;
 
     return {
       ...state,
-      titles: newTitles
-    }
-  } else if (action.type === 'DELETE_TITLE') {
-    state.titles.splice(action.index, 1)
-    let newTitles = new Array(...state.titles)
-
+      titles: newTitles,
+    };
+  } else if (action.type === "DELETE_TITLE") {
+    state.titles.splice(action.index, 1);
+    let newTitles = new Array(...state.titles);
+    localStorage.setItem("titles", JSON.stringify(newTitles));
     return {
       ...state,
-      titles: newTitles
-    }
+      titles: newTitles,
+    };
+  } else if (action.type === "HANDLE_CHANGE") {
+    state.newTitleName = action.newInput;
+    return {
+      ...state,
+      newTitleName: state.newTitleName,
+    };
+  } else if (action.type === "ADD_TITLE") {
+    let newStateTitles = [...state.titles, action.newTitle];
+    localStorage.setItem("titles", JSON.stringify(newStateTitles));
+    return {
+      newTitleName: "",
+      titles: newStateTitles,
+    };
   }
 
-  return state
+  return state;
 };
 
 export default rootReducer;
