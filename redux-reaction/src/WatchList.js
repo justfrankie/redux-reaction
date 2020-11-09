@@ -1,11 +1,15 @@
 import {Button } from '@material-ui/core';
 
-const WatchList = ({titles, handleDelete}) => {
+const WatchList = ({titles, handleDelete, changeToWatched}) => {
+
     const watchList = titles.length ? (
         titles.map((singleTitle, index) => {
             return (
                 <div className="title_item__container" key={singleTitle.id}>
-                    <span className="title__item">{singleTitle.title}</span>
+                    <span className="title__item" 
+                    style={singleTitle.watched ? {textDecoration: "line-through"} : {}}
+                    onClick={()=> changeToWatched(index)}
+                    >{singleTitle.title}</span>
                     <Button className="title__removeButton" onClick={() => handleDelete(index)} variant="outlined" color="secondary">remove</Button>
                 </div>
             )

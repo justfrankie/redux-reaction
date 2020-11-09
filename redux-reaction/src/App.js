@@ -9,13 +9,15 @@ class App extends React.Component {
     this.state = {
       newTitleName: '',
       titles: [
-        {id: 1, title: 'matrix'},
-        {id: 2, title: 'inception'},
+        {id: 1, title: 'The Matrix', watched: false},
+        {id: 2, title: 'Inception', watched: false},
+        {id: 4, title: 'A Quiet Place', watched: false},
       ]
     }
     this.addWatchTitle = this.addWatchTitle.bind(this);
     this.handleAddTitleChange = this.handleAddTitleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.changeToWatched = this.changeToWatched.bind(this);
   }
 
   addWatchTitle(e){
@@ -48,6 +50,14 @@ class App extends React.Component {
     }, ()=>console.log(this.state.titles))
   }
 
+  changeToWatched(index){
+    this.state.titles[index].watched = !this.state.titles[index].watched
+    
+    this.setState({
+      titles: this.state.titles
+    })
+  }
+
   render() {
     return (
       <div>
@@ -63,7 +73,7 @@ class App extends React.Component {
     </nav>
 
       <div className="watchList__container">
-     <WatchList titles={this.state.titles} handleDelete={this.handleDelete}/>
+     <WatchList titles={this.state.titles} handleDelete={this.handleDelete} changeToWatched={this.changeToWatched}/>
 
      <form onSubmit={(e) => this.addWatchTitle(e)} className="submitForm center">
      <TextField id="standard-basic" label="Watch Title"
