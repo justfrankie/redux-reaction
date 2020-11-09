@@ -1,19 +1,21 @@
 import React from 'react';
 import WatchList from './WatchList.js';
 import { TextField, Button } from '@material-ui/core';
+import { connect } from 'react-redux';
+import AddForm from './AddForm.js'
 
 class App extends React.Component {
 
   constructor(){
     super();
-    this.state = {
-      newTitleName: '',
-      titles: [
-        {id: 1, title: 'The Matrix', watched: false},
-        {id: 2, title: 'Inception', watched: false},
-        {id: 4, title: 'A Quiet Place', watched: false},
-      ]
-    }
+    // this.state = {
+    //   newTitleName: '',
+    //   titles: [
+    //     {id: 1, title: 'The Matrix', watched: false},
+    //     {id: 2, title: 'Inception', watched: false},
+    //     {id: 4, title: 'A Quiet Place', watched: false},
+    //   ]
+    // }
     this.addWatchTitle = this.addWatchTitle.bind(this);
     this.handleAddTitleChange = this.handleAddTitleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -24,10 +26,10 @@ class App extends React.Component {
     e.preventDefault();
     let newTitle = {
       id: new Date().getTime(),
-      title: this.state.newTitleName
+      title: this.props.newTitleName
     }
 
-    let updatedTitles = [...this.state.titles, newTitle]
+    let updatedTitles = [...this.props.titles, newTitle]
 
     this.setState({
       titles: updatedTitles,
@@ -43,22 +45,22 @@ class App extends React.Component {
   }
 
   handleDelete(index){
-  this.state.titles.splice(index, 1);
-    // console.log(toBeDeleted)
+  this.props.titles.splice(index, 1);
     this.setState({
-      titles: [...this.state.titles]
-    }, ()=>console.log(this.state.titles))
+      titles: [...this.props.titles]
+    })
   }
 
   changeToWatched(index){
-    this.state.titles[index].watched = !this.state.titles[index].watched
+    this.props.titles[index].watched = !this.props.titles[index].watched
     
     this.setState({
-      titles: this.state.titles
+      titles: this.props.titles
     })
   }
 
   render() {
+    const { titles } = this.props;
     return (
       <div>
 
@@ -73,17 +75,9 @@ class App extends React.Component {
     </nav>
 
       <div className="watchList__container">
-     <WatchList titles={this.state.titles} handleDelete={this.handleDelete} changeToWatched={this.changeToWatched}/>
+     <WatchList titles={this.props.titles} handleDelete={this.handleDelete} changeToWatched={this.changeToWatched}/>
 
-     <form onSubmit={(e) => this.addWatchTitle(e)} className="submitForm center">
-     <TextField id="standard-basic" label="Watch Title"
-     name="newTitleName"
-     value={this.state.newTitleName}
-     onChange={this.handleAddTitleChange}
-     />
-
-      <Button color="primary" variant="outlined" onClick={(e) => this.addWatchTitle(e)}>Add</Button>
-     </form>
+     <AddForm />
 
      </div>
 
@@ -92,4 +86,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    titles: state.titles
+  }
+}
+
+export default connect(mapStateToProps)(App);
