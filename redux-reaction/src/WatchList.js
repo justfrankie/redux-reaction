@@ -1,9 +1,12 @@
-const WatchList = ({titles}) => {
+import {Button } from '@material-ui/core';
+
+const WatchList = ({titles, handleDelete}) => {
     const watchList = titles.length ? (
         titles.map((singleTitle, index) => {
             return (
-                <div key={singleTitle.id}>
-                    <span>{singleTitle.title}</span>
+                <div className="title_item__container" key={singleTitle.id}>
+                    <span className="title__item">{singleTitle.title}</span>
+                    <Button className="title__removeButton" onClick={() => handleDelete(index)} variant="outlined" color="secondary">remove</Button>
                 </div>
             )
         })

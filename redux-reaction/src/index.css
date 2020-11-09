@@ -8,3 +8,26 @@ body {
   margin: 100px auto 0 auto;
   font-size: 20px;
 }
+
+.submitForm {
+  display: grid;
+  width: 40%;
+  margin: auto;
+}
+
+.title__item {
+  margin: auto;
+}
+
+.title_item__container {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  background: #efefef;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.title__removeButton {
+  background: white;
+}
