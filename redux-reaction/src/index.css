@@ -1,12 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&display=swap');
+
 body {
   margin: 0;
   font-size: 12px;
+  background: #f1f4f7;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 600;
+  overflow-x: hidden;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.site-logo {
+  position: absolute;
+  color: #795993;
+  display: inline-block;
+  font-size: 34px;
+  font-weight: 800;
+  margin: 0 auto 0 50px;
+  padding: 0;
+}
+
+.searchbar__container {
+  width: 35%;
+  margin: auto;
+  display: flex;
+}
+
+.searchbar__input {
+  color: #795993;
+}
+
+.nav-item-a {
+  color: #464545;
+  font-weight: 700;
 }
 
 .watchList__container {
-  width: 70%;
-  margin: 100px auto 0 auto;
+  display: grid;
+  margin: 50px auto 0 auto;
   font-size: 20px;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 100%;
 }
 
 .submitForm {
@@ -17,13 +54,15 @@ body {
 
 .title__item {
   margin: auto;
+  color: #5a5a5a;
+  font-weight: 400;
 }
 
 .title_item__container {
   width: 80%;
   margin: 10px auto;
   display: flex;
-  background: #efefef;
+  background: #f7f7f7;
   border-radius: 3px;
   padding: 5px;
 }
@@ -35,4 +74,64 @@ body {
 
 .title__removeButton {
   background: white;
+}
+
+.card-panel {
+  border-radius: 6px;
+}
+
+#leftColumn__container {
+  display: block;
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+}
+
+#leftColumn-nav__container {
+  margin:auto;
+}
+
+#leftColumn-nav__ul {
+  width: max-content;
+  margin: auto;
+  text-align: left;
+}
+
+
+
+.left-nav__page {
+  color: #3a3a3a;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 5px auto;
+  display: block;
+  border-bottom: 2px solid #f1f4f7;
+}
+
+.left-nav__page:hover {
+  border-bottom: 2px solid #795993;
+}
+
+#left-nav__ul {
+  width: 70%;
+  margin: 20px auto 0 auto;
+}
+
+.left-nav__item {
+  display: block;
+  color: #4c4c4c;
+  padding: 2px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.left-nav__item:hover {
+  color: #795993;
+}
+
+#newCategory {
+  font-size: 16px;
+  color: #70a4da;
+  cursor: pointer;
+  padding: 3px;
 }

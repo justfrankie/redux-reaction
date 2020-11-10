@@ -33,9 +33,8 @@ class WatchList extends Component {
               className="title__removeButton"
               onClick={() => this.handleClickDelete(index)}
               variant="outlined"
-              color="secondary"
             >
-              remove
+              Remove
             </Button>
           </div>
         );
@@ -44,7 +43,7 @@ class WatchList extends Component {
       <p>You have no watch titles!</p>
     );
 
-    return <div className="center card-panel blue-text ">{mappedList}</div>;
+    return <div className="center card-panel">{mappedList}</div>;
   }
 }
 
